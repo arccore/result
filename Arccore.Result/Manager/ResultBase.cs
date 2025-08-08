@@ -1,39 +1,51 @@
-﻿namespace Arccore.Result.Manager;
+﻿using Arccore.Result.Constants;
+using Arccore.Result.Exceptions;
+using Arccore.Result.Extenstions;
+
+namespace Arccore.Result.Manager;
 
 public abstract class ResultBase
 {
     public bool IsSuccess { get; init; }
+    public ResultType Type { get; init; }
     public string Message { get; init; }
     public Error? Error { get; init; }
     public IEnumerable<Error>? Errors { get; init; }
 
-    protected ResultBase(string message)
+    protected ResultBase(string message, ResultType type = ResultType.Success)
     {
+        type.ValidateSuccessResult();
         IsSuccess = true;
+        Type = type;
         Message = message;
     }
 
-    protected ResultBase(Error error, string message = "")
+    protected ResultBase(Error error, ResultType type, string message = "")
     {
+        type.ValidateFailureResult();
 
         if (error is null)
         {
-            throw new ArgumentNullException("Can`t return failure result without error!");
+            throw new ResultException(ResultMessages.NullError);
         }
-
+        
         IsSuccess = false;
+        Type = type;
         Message = string.IsNullOrWhiteSpace(message)? error.ToString() : message;
         Error = error;
     }
 
-    protected ResultBase(IEnumerable<Error> errors, string message)
+    protected ResultBase(IEnumerable<Error> errors, string message, ResultType type)
     {
+        type.ValidateFailureResult();
+
         if (errors is null)
         {
-            throw new ArgumentNullException("Can`t return failure result with error!");
+            throw new ResultException(ResultMessages.NullError);
         }
 
         IsSuccess = false;
+        Type = type;
         Message = message;
         Errors = errors;
     }
