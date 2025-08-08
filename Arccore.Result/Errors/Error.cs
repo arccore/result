@@ -1,6 +1,6 @@
-﻿public abstract record Error(
+﻿public record Error(
     string code, 
-    string message, string Fi)
+    string message)
 {
 
     public override string ToString() => $"{code}: {message}";
