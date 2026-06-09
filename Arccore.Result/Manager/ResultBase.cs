@@ -4,6 +4,9 @@ using Arccore.Result.Extenstions;
 
 namespace Arccore.Result.Manager;
 
+/// <summary>
+/// Base type for the result hierarchy.
+/// </summary>
 public abstract class ResultBase
 {
     public bool IsSuccess { get; init; }
@@ -15,9 +18,12 @@ public abstract class ResultBase
     protected ResultBase(string message, ResultType type = ResultType.Success)
     {
         type.ValidateSuccessResult();
+
         IsSuccess = true;
         Type = type;
-        Message = message;
+        Message = string.IsNullOrWhiteSpace(message)
+            ? ResultMessages.DefaultSuccess
+            : message;
     }
 
     protected ResultBase(Error error, ResultType type, string message = "")
@@ -28,11 +34,13 @@ public abstract class ResultBase
         {
             throw new ResultException(ResultMessages.NullError);
         }
-        
+
         IsSuccess = false;
         Type = type;
-        Message = string.IsNullOrWhiteSpace(message)? error.ToString() : message;
         Error = error;
+        Message = string.IsNullOrWhiteSpace(message)
+            ? error.ToString()
+            : message;
     }
 
     protected ResultBase(IEnumerable<Error> errors, string message, ResultType type)
@@ -46,8 +54,10 @@ public abstract class ResultBase
 
         IsSuccess = false;
         Type = type;
-        Message = message;
         Errors = errors;
+        Message = string.IsNullOrWhiteSpace(message)
+            ? ResultMessages.DefaultError
+            : message;
     }
-
 }
+
