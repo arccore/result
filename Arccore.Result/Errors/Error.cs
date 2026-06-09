@@ -1,7 +1,9 @@
-﻿public record Error(
-    string code, 
-    string message)
-{
+﻿namespace Arccore.Result.Errors;
 
-    public override string ToString() => $"{code}: {message}";
+/// <summary>
+/// Defines a domain error with a code and a descriptive message.
+/// </summary>
+public record Error(string Code, string Message)
+{
+    public override string ToString() => $"{Code}: {Message}";
 }
