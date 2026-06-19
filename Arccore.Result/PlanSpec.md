@@ -17,11 +17,14 @@ Completed:
 - Core README and documentation pages exist for result usage and extension behavior.
 - GitHub Actions CI restores, builds, and runs the lightweight test project.
 - Core package has simple NuGet metadata and includes the README in packed output.
+- ASP.NET Core adapter package maps core results to Minimal API and MVC responses.
+- Adapter tests cover success and failure mappings for Minimal API and MVC.
+- Framework adapter documentation exists.
+- Created and accepted adapter mappings support optional location URIs.
 
 Remaining:
 
-- Decide whether ASP.NET adapters should live in the core project or a separate package before implementation.
-- Add adapter tests when Minimal API or MVC mappings are implemented.
+- Consider typed route-name overloads only if real ASP.NET usage shows they are needed.
 
 ## Goals
 
@@ -592,7 +595,9 @@ Acceptance criteria:
 10. Completed: Migrate to `.slnx` and include the test project.
 11. Completed: Add core documentation files.
 12. Completed: Add GitHub Actions CI restore/build/test.
-13. Later: Add ASP.NET Core adapter project/package and framework adapter documentation.
+13. Completed: Add ASP.NET Core adapter project/package and framework adapter documentation.
+14. Completed: Add location-aware adapter overloads for `Created` and `Accepted`.
+15. Later: Consider typed route-name overloads only if real ASP.NET usage shows they are needed.
 
 ## Breaking Change Checklist
 
@@ -611,6 +616,6 @@ Resolved decisions:
 - Completed: Core result invariants are enforced by constructors or factories.
 - Completed: Unit tests cover success, failure, invalid enum values, and generic result behavior.
 - Completed: Documentation exists for core results and extensions.
-- Documentation exists for framework adapters once adapters are implemented.
-- ASP.NET adapter dependency boundaries are explicit.
+- Completed: Documentation exists for framework adapters.
+- Completed: ASP.NET adapter dependency boundaries are explicit.
 - Completed locally: CI restore/build/test commands succeed.
