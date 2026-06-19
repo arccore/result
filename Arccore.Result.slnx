@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Arccore.Result/Arccore.Result.csproj" />
+  <Project Path="Arccore.Result.Tests/Arccore.Result.Tests.csproj" />
+</Solution>
