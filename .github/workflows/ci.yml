@@ -34,3 +34,6 @@ jobs:
 
       - name: Run tests
         run: dotnet run --project Arccore.Result.Tests\Arccore.Result.Tests.csproj --configuration Release --no-build
+
+      - name: Run ASP.NET Core adapter tests
+        run: dotnet run --project Arccore.Result.AspNetCore.Tests\Arccore.Result.AspNetCore.Tests.csproj --configuration Release --no-build

@@ -1,4 +1,6 @@
 <Solution>
   <Project Path="Arccore.Result/Arccore.Result.csproj" />
+  <Project Path="Arccore.Result.AspNetCore/Arccore.Result.AspNetCore.csproj" />
+  <Project Path="Arccore.Result.AspNetCore.Tests/Arccore.Result.AspNetCore.Tests.csproj" />
   <Project Path="Arccore.Result.Tests/Arccore.Result.Tests.csproj" />
 </Solution>
